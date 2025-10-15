@@ -9,7 +9,7 @@
 
 # name is the name of the cluster. This defaults to the name of the Helm
 # release.
-# name: hippo
+# nameOverwrite: hippo
 
 # postgresVersion sets the version to deploy. This version number needs to be
 # available as one of the "RELATED_IMAGE_POSTGRES_..." images as part of the PGO
