@@ -1,0 +1,8 @@
+apiVersion: v2
+name: postgres-database
+description: Helm chart providing a Postgres database based on Crunchydata PGO
+type: application
+sources:
+  - https://github.com/CrunchyData/postgres-operator-examples/blob/main/helm/postgres/values.yaml
+version: 0.0.1
+appVersion: "17"
