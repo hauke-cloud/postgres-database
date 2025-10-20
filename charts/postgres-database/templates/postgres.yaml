@@ -29,11 +29,9 @@ spec:
         resources:
           requests:
             storage: {{ default "1Gi" .Values.instanceSize | quote }}
-      {{- if or .Values.instanceMemory .Values.instanceCPU }}
+      {{- with .Values.resources }}
       resources:
-        limits:
-          cpu: {{ default "" .Values.instanceCPU | quote }}
-          memory: {{ default "" .Values.instanceMemory | quote }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
   {{- end }}
   backups:
