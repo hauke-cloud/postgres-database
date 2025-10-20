@@ -20,6 +20,16 @@ spec:
   instances:
     - name: {{ default "instance1" .Values.instanceName | quote }}
       replicas: {{ default 1 .Values.instanceReplicas }}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: postgres-operator.crunchydata.com/cluster
+                    operator: In
+                    values:
+                      - {{ .Values.nameOverwrite | default (include "postgres-database.name" .) }}
+              topologyKey: kubernetes.io/hostname
       dataVolumeClaimSpec:
         {{- if .Values.instanceStorageClassName }}
         storageClassName: {{ .Values.instanceStorageClassName | quote }}
